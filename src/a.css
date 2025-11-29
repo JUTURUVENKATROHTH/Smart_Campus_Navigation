@@ -1,0 +1,171 @@
+.leaflet-container {
+  border-radius: 12px;
+}
+
+/* Dot-style marker */
+.custom-dot-marker .dot {
+  width: 10px;
+  height: 10px;
+  background-color: #2563eb;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.7);
+}
+
+
+/* Animation for info card */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-in-out;
+}
+/* src/App.css */
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #f0f4ff;
+}
+
+.map-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-container {
+  flex: 2;
+  position: relative;
+}
+
+.leaflet-map {
+  height: 100%;
+  width: 100%;
+  border-radius: 0;
+}
+
+.info-panel {
+  flex: 1;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+  border-left: 2px solid #e5e9ff;
+}
+
+.info-panel h2 {
+  margin-top: 0;
+  color: #3b5bdb;
+}
+
+select,
+button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d7ff;
+  background: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #3b5bdb;
+  color: white;
+}
+
+.clear-btn {
+  background: #ff6b6b;
+  color: white;
+}
+
+.clear-btn:hover {
+  background: #e03131;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.route-summary {
+  margin-top: 10px;
+  padding: 10px;
+  background: #eef2ff;
+  border-radius: 10px;
+  animation: fadeIn 0.4s ease-in;
+}
+
+.route-summary ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.route-summary li {
+  margin: 5px 0;
+}
+
+.distance {
+  font-weight: 600;
+  color: #364fc7;
+}
+
+.place-card {
+  margin-top: auto;
+  background: white;
+  border-radius: 10px;
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+.place-card h3 {
+  margin: 0 0 6px;
+  color: #2b4ad3;
+}
+
+.place-card button {
+  margin-top: 8px;
+  background: #3b5bdb;
+  color: white;
+}
+
+.place-card button:hover {
+  background: #364fc7;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Floating step marker styling */
+.floating-step {
+  background: rgba(59, 91, 219, 0.85);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -100%);
+  animation: fadeIn 0.5s ease-in;
+}

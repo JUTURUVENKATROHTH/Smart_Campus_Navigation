@@ -1,0 +1,440 @@
+/* ==========================================================================
+   # VARIABLES
+   ========================================================================== */
+
+:root {
+  /* Dimensions */
+  --sidebar-w: 340px;
+  
+  /* Colors */
+  --accent: #2563eb;
+  --muted: #64748b;
+  --glass: rgba(255, 255, 255, 0.96);
+  
+  /* Color-system variables for light mode */
+  --text-primary: #0f172a;
+  --text-muted: #64748b;
+  --background-primary: #ffffff;
+  --background-secondary: #f1f5f9;
+  --background-glass: rgba(255, 255, 255, 0.96);
+  --border-color: #e6ecff;
+  --box-shadow-light: rgba(2, 6, 23, 0.04);
+  --box-shadow-dark: rgba(2, 6, 23, 0.12);
+}
+
+/* ==========================================================================
+   # BASE STYLES
+   ========================================================================== */
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--background-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ==========================================================================
+   # DARK MODE
+   ========================================================================== */
+
+.dark {
+  /* Overrides for the dark theme */
+  --accent: #60a5fa;
+  --text-primary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --background-primary: #0f172a;
+  --background-secondary: #1e293b;
+  --background-glass: rgba(15, 23, 42, 0.9);
+  --border-color: #334155;
+  --box-shadow-light: rgba(0, 0, 0, 0.2);
+  --box-shadow-dark: rgba(0, 0, 0, 0.3);
+}
+
+.dark .sidebar {
+  border-left-color: rgba(255, 255, 255, 0.08);
+  color: #e5b9d3;
+}
+
+.dark .map-section {
+  filter: brightness(0.9); /* Subtly darkens the map for contrast */
+}
+
+.dark .info-card,
+.dark .help-card,
+.dark .route-info {
+  background: var(--background-secondary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark .floating-step {
+  background: rgba(59, 130, 246, 0.95); /* Adjusted for better visibility in dark mode */
+}
+
+/* ==========================================================================
+   # LAYOUT
+   ========================================================================== */
+
+.layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--background-glass);
+  border-left: 1px solid rgba(2, 6, 23, 0.06);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: -6px 0 30px rgba(2, 6, 23, 0.03);
+  overflow-y: auto;
+}
+
+.map-section {
+  flex: 1;
+  position: relative;
+  transition: background-color 0.3s ease, filter 0.3s ease;
+}
+
+/* ==========================================================================
+   # COMPONENTS
+   ========================================================================== */
+
+/* Typography */
+.title {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* Form Elements */
+label {
+  display: block;
+  margin-top: 8px;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 13px;
+  transition: color 0.3s ease;
+}
+
+select {
+  margin-top: 6px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ==========================================================================
+   # BUTTON GROUP WRAPPER
+   ========================================================================== */
+.btn-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   # SHARED BUTTON BASE STYLE
+   ========================================================================== */
+.btn-primary,
+.btn-secondary,
+.btn-tertiary {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  /* Typography */
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.5;
+
+  /* Motion */
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+/* ==========================================================================
+   # PRIMARY BUTTON
+   ========================================================================== */
+.btn-primary {
+  color: white;
+  background-color: var(--accent);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  background-color: #1f4fd8;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   # SECONDARY BUTTON (LIGHT MODE)
+   ========================================================================== */
+.btn-secondary {
+  color: var(--text-primary);
+  background-color: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-secondary:hover {
+  background-color: #e2e8f0;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:active {
+  background-color: #cbd5e1;
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid #cbd5e1;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   # SECONDARY BUTTON (DARK MODE — FIXED TEXT VISIBILITY)
+   ========================================================================== */
+.dark .btn-secondary {
+  color: #f1f5f9 !important;
+  background-color: #334155 !important;
+  border: 1px solid #475569 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+.dark .btn-secondary:hover {
+  background-color: #475569 !important;
+}
+
+.dark .btn-secondary:active {
+  background-color: #64748b !important;
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   # TERTIARY BUTTON (LIGHT MODE)
+   ========================================================================== */
+.btn-tertiary {
+  padding: 9px 10px;
+  background: #cbd5e1;
+  color: #1e293b;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-tertiary:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   # TERTIARY BUTTON (DARK MODE)
+   ========================================================================== */
+.dark .btn-tertiary {
+  background: #475569;
+  color: #e2e8f0;
+}
+
+.dark .btn-tertiary:hover {
+  background: #64748b;
+}
+
+/* Toggles row */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+/* Route info box */
+.route-info {
+  margin-top: 12px;
+  background: #fbfdff;
+  border: 1px solid #eef2ff;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.steps-details summary {
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.steps-details ol {
+  margin: 6px 0 0 16px;
+  padding: 0;
+}
+
+/* Info card (appears in sidebar) */
+.info-card {
+  margin-top: 12px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 12px;
+  border: 1px solid #e6eefc;
+  box-shadow: 0 6px 18px var(--box-shadow-light);
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-header h3 {
+  margin: 0;
+  color: #6e57ee;
+  font-size: 16px;
+}
+.dark .info-header h3 {
+  margin: 0;
+  color: #e5b9d3;
+  font-size: 16px;
+}
+
+
+.info-header .close {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #475569;
+}
+
+.info-text {
+  margin: 8px 0;
+  color: #334155;
+  font-size: 14px;
+}
+
+.coords {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Subtle helper card shown when no place selected */
+.help-card {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: #334155;
+  font-size: 13px;
+}
+
+/* Dot marker styling (DivIcon) */
+.custom-dot-marker .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.6);
+  border: 2px solid #fff;
+}
+
+/* Floating step label (divIcon HTML) */
+.floating-step {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: rgba(37, 99, 235, 0.95);
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px var(--box-shadow-dark);
+  transform: translateY(-6px);
+}
+
+/* ==========================================================================
+   # RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .map-section {
+    height: 50vh;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: 50vh;
+    border-left: none;
+    border-top: 1px solid rgba(2, 6, 23, 0.06);
+    
+  }
+}
+/* small responsive tweak for instructions panel on narrow screens */
+
+/* Force instructions panel to always center, regardless of other CSS */
+.instructions-panel {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  margin: 0 !important;
+}
+
+/* On small screens: expand width and height properly */
+@media (max-width: 600px) {
+  .instructions-panel {
+    width: 92vw !important;
+    max-height: 88vh !important;
+    padding: 16px !important;
+  }
+}
+
+.dark_only {
+  filter: invert(98%) hue-rotate(180deg) brightness(150%) contrast(120%);
+}
